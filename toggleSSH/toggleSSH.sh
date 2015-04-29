@@ -1,12 +1,11 @@
 #!/bin/bash
-# Assumes root!
 sshStatus=$(sudo systemsetup -getremotelogin | awk '{print $3}')
 if [ "$sshStatus" == "On" ]; then
   systemsetup -f -setremotelogin off
-  printf "%s" "Disabled SSH!"
+  printf "Disabled SSH!"
 elif [ "$sshStatus" == "Off" ]; then
   systemsetup -f -setremotelogin on
-  printf "%s" "Enabled SSH!"
+  printf "Enabled SSH!"
 else
-  printf "Error, SSH Status was: $sshStatus"
+  printf "Error, SSH Status was: %s" "$sshStatus"
 fi
