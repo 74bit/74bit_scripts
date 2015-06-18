@@ -19,6 +19,6 @@ else
   printf "Installing $APP_PROCESS_NAME version %s" "$version"
   rm "$DMG_PATH"
   ditto -rsrc "$DMG_VOLUME_PATH/$APP_NAME" "$APP_PATH"
-  hdiutil detach -quiet "$DMG_VOLUME_PATH"
+  hdiutil detach -quiet "$DMG_PATH"
   rm "$DMG_PATH"
 fi
