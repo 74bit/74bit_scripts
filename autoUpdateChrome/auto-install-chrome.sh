@@ -18,7 +18,7 @@ else
   hdiutil attach -nobrowse -quiet "$DMG_PATH"
   version=$(defaults read "$DMG_VOLUME_PATH/$APP_NAME/$APP_INFO_PLIST" CFBundleShortVersionString)
   printf "Installing $APP_PROCESS_NAME version %s" "$version"
-  rm -rf /Applications/Google\ Chrome.app
+  rm "$DMG_PATH"
   ditto -rsrc "$DMG_VOLUME_PATH/$APP_NAME" "$APP_PATH"
   hdiutil detach -quiet "$DMG_VOLUME_PATH"
   rm "$DMG_PATH"
