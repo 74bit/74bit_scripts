@@ -49,3 +49,6 @@ DONE
 #Set the newly created login.keychain as the users default keychain
 su $USER -c "security default-keychain -s login.keychain"
 echo "this new keychain is default"
+
+# Sync keychain enabled
+defaults write com.apple.keychainaccess SyncLoginPassword -bool true
