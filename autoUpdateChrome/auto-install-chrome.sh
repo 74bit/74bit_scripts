@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script will download and install Google Chrome on a fresh installation of Mac OS X.
+# This script will download and install the latest Google Chrome version on OS X
 
 DOWNLOAD_URL="https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
 DMG_PATH="/tmp/Google Chrome.dmg"
