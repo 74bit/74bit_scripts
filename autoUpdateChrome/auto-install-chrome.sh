@@ -10,7 +10,7 @@ APP_PROCESS_NAME="Google Chrome"
 APP_INFO_PLIST="Contents/Info.plist"
 
 if pgrep "$APP_PROCESS_NAME" &>/dev/null; then
-  printf "Error - %s is currently running!" "$APP_NAME"
+  printf "Error - %s is currently running!" "$APP_PROCESS_NAME"
 else
   curl --retry 3 -L "$DOWNLOAD_URL" -o "$DMG_PATH"
   hdiutil attach -nobrowse -quiet "$DMG_PATH"
