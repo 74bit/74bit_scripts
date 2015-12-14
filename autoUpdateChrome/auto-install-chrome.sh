@@ -14,6 +14,9 @@ APP_PERMISSION_GROUP="wheel"
 if pgrep "$APP_PROCESS_NAME" &>/dev/null; then
   printf "Error - %s is currently running!" "$APP_PROCESS_NAME"
 else
+  if [ -d "$APP_PATH" ]; then
+    rm -rf "$APP_PATH"
+  fi
   curl --retry 3 -L "$DOWNLOAD_URL" -o "$DMG_PATH"
   hdiutil attach -nobrowse -quiet "$DMG_PATH"
   version=$(defaults read "$DMG_VOLUME_PATH/$APP_NAME/$APP_INFO_PLIST" "$APP_VERSION_KEY")
