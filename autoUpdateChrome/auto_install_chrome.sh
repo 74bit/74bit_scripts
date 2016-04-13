@@ -8,8 +8,12 @@ APP_PATH="/Applications/$APP_NAME"
 APP_PROCESS_NAME="Google Chrome"
 APP_INFO_PLIST="Contents/Info.plist"
 APP_VERSION_KEY="CFBundleShortVersionString"
-APP_PERMISSION_USER="root"
-APP_PERMISSION_GROUP="wheel"
+
+osVersion=$(sw_vers -productVersion | awk -F. '{print $2}')
+if [[ $osVersion -lt 9 ]]; then
+    echo 'Chrome 50 only supports 10.9+ and later'
+    exit 10
+fi
 
 if pgrep "$APP_PROCESS_NAME" &>/dev/null; then
   printf "Error - %s is currently running!" "$APP_PROCESS_NAME"
@@ -22,7 +26,6 @@ else
   version=$(defaults read "$DMG_VOLUME_PATH/$APP_NAME/$APP_INFO_PLIST" "$APP_VERSION_KEY")
   printf "Installing $APP_PROCESS_NAME version %s" "$version"
   ditto -rsrc "$DMG_VOLUME_PATH/$APP_NAME" "$APP_PATH"
-  chown -R "$APP_PERMISSION_USER":"$APP_PERMISSION_GROUP" "$APP_PATH"
   hdiutil detach -quiet "$DMG_PATH"
   rm "$DMG_PATH"
 fi
