@@ -29,7 +29,7 @@ scutil --set HostName $BELUS
 # Change the ComputerName to the variable
 scutil --set ComputerName $BELUS
 # Write the variable to the end of /etc/hostconfig. This uses the FQDN. If you have a FQDN... you should change this.
-echo HOSTNAME=$BELUS.apptio.lan >> /etc/hostconfig
+echo HOSTNAME=$BELUS.XXX.lan >> /etc/hostconfig
 # change the Bonjour name
 systemsetup -setlocalsubnetname $BELUS
 sudo jamf recon
